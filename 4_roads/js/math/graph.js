@@ -1,3 +1,6 @@
+
+// stores the points and segments, data that represent the roads
+
 class Graph {
     constructor(points = [], segments = []) {
         this.points = points;
@@ -5,6 +8,7 @@ class Graph {
     }
 
     static load(info) {
+    // a function to load points and segments stored in JSON file
         const points = info.points.map((i) => new Point(i.x, i.y));
         const segments = info.segments.map((i) => new Segment(
             points.find((p) => p.equals(i.p1)),
