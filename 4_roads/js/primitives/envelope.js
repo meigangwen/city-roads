@@ -24,9 +24,9 @@ class Envelope {
         return new Polygon(points);
     }
 
-    draw(ctx) {
-        this.poly.draw(ctx);
+    draw(ctx, options) {
+        this.poly.draw(ctx, options);
         //debug drawing of segments in random color
-        this.poly.drawSegments(ctx);
+        //this.poly.drawSegments(ctx);
     }
 }
