@@ -9,7 +9,12 @@ class Building {
             add(p, scale(subtract(p, viewPoint)), this.heightCoef)
         );
         const ceiling = new Polygon(topPoints);
+        
+        for (const point of topPoints){
+            point.draw(ctx, {size:15, color:"black"})
+        }
+        
         this.base.draw(ctx, { fill: "white", stroke: "#AAA" });
-        //ceiling.draw(ctx, { fill: "red", stroke: "#AAA" })
+        ceiling.draw(ctx, { fill: "white", stroke: "#AAA" });
     }
 }
