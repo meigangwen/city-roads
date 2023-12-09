@@ -10,6 +10,15 @@
       <div id="controls">
          <button onclick="dispose()">🗑️</button>
          <button onclick="save()">💾</button>
+         &nbsp;
+         <button id="graphBtn" onclick="setMode('graph')">🌐</button>
+         <button id="stopBtn" onclick="setMode('stop')">🛑</button>
+         <button id="yieldBtn" onclick="setMode('yield')">⚠️</button>
+         <button id="crossingBtn" onclick="setMode('crossing')">🚶</button>
+         <button id="parkingBtn" onclick="setMode('parking')">🅿️</button>
+         <button id="lightBtn" onclick="setMode('light')">🚦</button>
+         <button id="startBtn" onclick="setMode('start')">🚙</button>
+         <button id="targetBtn" onclick="setMode('target')">🎯</button>
       </div>
 
       <script src="js/world.js"></script>
@@ -61,6 +70,26 @@
 
          function save() {
             localStorage.setItem("graph", JSON.stringify(graph));
+         }
+
+         function setMode(mode) {
+            dissableEditors();
+            //tools[mode].button.style.backgroundColor = "white";
+            //tools[mode].button.style.filter = "";
+            //tools[mode].editor.enable();
+         }
+
+         function dissableEditors() {
+            /*
+            for (const tool of Object.values(tools)) {
+               tool.button.style.backgroundColor = "gray";
+               tool.button.style.filter = "grayscale(100%)";
+               tool.editor.disable();
+            }*/
+            graphBtn.style.backgroundColor = 'gray';
+            graphBtn.style.filter = "grayscale(100%)";
+            stopBtn.style.backgroundColor = "gray";
+            stopBtn.style.filter = "grayscale(100%)";
          }
       </script>
    </body>
