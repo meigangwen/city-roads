@@ -264,7 +264,7 @@ class World {
    }
 
    draw(ctx, viewPoint) {
-      this.#updateLights();
+      //this.#updateLights();
 
       for (const env of this.envelopes) {
          env.draw(ctx, { fill: "#BBB", stroke: "#BBB", lineWidth: 15 });
