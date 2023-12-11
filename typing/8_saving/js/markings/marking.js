@@ -10,6 +10,28 @@ class Marking  {
          translate(center, angle(directionVector), -height / 2)
       );
       this.poly = new Envelope(this.support, width, 0).poly;
+      this.type = "marking";
+   }
+
+   static load(info) {
+      const p = new Point(info.center.x, info.center.y);
+      const dir = new Point(info.directionVector.x, info.directionVector.y);
+      switch (info.type) {
+         case "crossing":
+            return new Crossing(p, dir, info.width, info.height);
+         case "light":
+            return new Light(p, dir, info.width, info.height);
+         case "parking":
+            return new Parking(p, dir, info.width, info.height);
+         case "start":
+            return new Start(p, dir, info.width, info.height);
+         case "stop":
+            return new Stop(p, dir, info.width, info.height);
+         case "target":
+            return new Target(p, dir, info.width, info.height);
+         case "yield":
+            return new Yield(p, dir, info.width, info.height);
+      }
    }
 
    draw(ctx) {
