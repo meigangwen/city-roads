@@ -34,7 +34,7 @@
             <textarea id="osmDataContainer" rows="10" cols="50" 
             placeholder="Paste OSM data here"></textarea>
             <div>
-               <button onclick="paseOsmData()">✔️</button>
+               <button onclick="parseOsmData()">✔️</button>
                <button onclick="closeOsmPanel()">❌</button>
             </div>
          </div>
@@ -63,6 +63,7 @@
       <script src="js/items/building.js"></script>
       <script src="js/math/utils.js"></script>
       <script src="js/math/graph.js"></script>
+      <script src="js/math/osm.js"></script>
       <script src="js/primitives/point.js"></script>
       <script src="js/primitives/segment.js"></script>
       <script src="js/primitives/polygon.js"></script>
@@ -179,6 +180,17 @@
 
          function closeOsmPanel() {
             osmPanel.style.display = "none";
+         }
+
+         function parseOsmData() {
+            if (osmDataContainer.value == ""){
+               alert("Paste data first");
+               return;
+            }
+            const res = Osm.parseRoads(JSON.parse(osmDataContainer.value));
+            graph.points = res.points;
+            graph.segments = res.segments;
+            closeOsmPanel();
          }
       </script>
    </body>
