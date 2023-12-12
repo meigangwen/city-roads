@@ -9,16 +9,14 @@ networkCanvas.height=window.innerHeight;
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 
-//add code to generate the world
 const worldString = localStorage.getItem("world");
 const worldInfo = worldString ? JSON.parse(worldString) : null;
 const world = worldInfo
-? World.load(worldInfo)
-: new World(new Graph());
-//const graph = world.graph;
+   ? World.load(worldInfo)
+   : new World(new Graph());
 const viewport = new Viewport(carCanvas, world.zoom, world.offset);
 
-const N=100;
+const N=100;7
 const cars=generateCars(N);
 let bestCar=cars[0];
 if(localStorage.getItem("bestBrain")){
@@ -48,16 +46,16 @@ function discard(){
 function generateCars(N){
     const startPoints = world.markings.filter((m) => m instanceof Start);
     const startPoint = startPoints.length > 0
-        ? startPoints[0].center
-        : new Point(100, 100);
+      ? startPoints[0].center
+      : new Point(100, 100);
     const dir = startPoints.length > 0
-        ? startPoints[0].directionVector
-        : new Point(0, -1);
+      ? startPoints[0].directionVector
+      : new Point(0, -1);
     const startAngle = - angle(dir) + Math.PI / 2;
-
+    
     const cars=[];
     for(let i=1;i<=N;i++){
-        cars.push(new Car(startPoint.x, startPoint.y,30,50,"AI", startAngle));
+        cars.push(new Car(startPoint.x, startPoint.y,30,50,"AI",startAngle));
     }
     return cars;
 }
@@ -74,7 +72,6 @@ function animate(time){
             ...cars.map(c=>c.fittness)
         ));
 
-    //add code the draw the world
     world.cars = cars;
     world.bestCar = bestCar;
 
@@ -84,12 +81,11 @@ function animate(time){
     viewport.reset();
     const viewPoint = scale(viewport.getOffset(), -1);
     world.draw(carCtx, viewPoint, false);
-    //------------------------------------
 
     for(let i=0;i<traffic.length;i++){
         traffic[i].draw(carCtx);
     }
-    
+
     networkCtx.lineDashOffset=-time/50;
     networkCtx.clearRect(0, 0, networkCanvas.width, networkCanvas.height);
     Visualizer.drawNetwork(networkCtx,bestCar.brain);

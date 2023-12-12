@@ -32,10 +32,9 @@ class World {
       this.generate();
    }
 
-   static load(info) {
+   static load(info){
       const world = new World(new Graph());
       world.graph = Graph.load(info.graph);
-      
       world.roadWidth = info.roadWidth;
       world.roadRoundness = info.roadRoundness;
       world.buildingWidth = info.buildingWidth;
@@ -43,7 +42,6 @@ class World {
       world.spacing = info.spacing;
       world.treeSize = info.treeSize;
       world.envelopes = info.envelopes.map((e) => Envelope.load(e));
-      // the proper implementation is to cast the following p1 and p2 as point obj first
       world.roadBorders = info.roadBorders.map((b) => new Segment(b.p1, b.p2));
       world.buildings = info.buildings.map((e) => Building.load(e));
       world.trees = info.trees.map((t) => new Tree(t.center, info.treeSize));
@@ -278,7 +276,7 @@ class World {
          env.draw(ctx, { fill: "#BBB", stroke: "#BBB", lineWidth: 15 });
       }
       for (const marking of this.markings) {
-         if ( !(marking instanceof Start) || showStartMarkings){
+         if (!(marking instanceof Start) || showStartMarkings) {
             marking.draw(ctx);
          }
       }
@@ -289,7 +287,6 @@ class World {
          seg.draw(ctx, { color: "white", width: 4 });
       }
 
-      //code to draw the car
       ctx.globalAlpha = 0.2;
       for (const car of this.cars) {
          car.draw(ctx);
